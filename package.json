@@ -1,0 +1,28 @@
+{
+  "name": "appartments-platform-be",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Victoria-Panayoti/appartments-platform-be.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Victoria-Panayoti/appartments-platform-be/issues"
+  },
+  "homepage": "https://github.com/Victoria-Panayoti/appartments-platform-be#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "nanoid": "^3.3.4"
+  }
+}

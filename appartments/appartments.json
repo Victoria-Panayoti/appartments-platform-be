@@ -1,0 +1,92 @@
+[
+  {
+    "id": "id-1",
+    "picture": "app1",
+    "country": "Italy",
+    "city": "Roma",
+    "description": "Luxurious Scandinavian-style apartments with panoramic river views and free Wi-Fi. ",
+    "rating": 5,
+    "price": 1250
+  },
+  {
+    "id": "id-2",
+    "picture": "app2",
+    "country": "Italy",
+    "city": "Roma",
+    "description": "Luxurious Scandinavian-style apartments with panoramic river views and free Wi-Fi.",
+    "rating": 5,
+    "price": 1250
+  },
+  {
+    "id": "id-3",
+    "picture": "app3",
+    "country": "Italy",
+    "city": "Roma",
+    "description": "Luxurious Scandinavian-style apartments with panoramic river views and free Wi-Fi.",
+    "rating": 5,
+    "price": 1250
+  },
+  {
+    "id": "id-4",
+    "picture": "app4",
+    "country": "Italy",
+    "city": "Roma",
+    "description": "Luxurious Scandinavian-style apartments with panoramic river views and free Wi-Fi.",
+    "rating": 5,
+    "price": 1250
+  },
+  {
+    "id": "id-5",
+    "picture": "app5",
+    "country": "Italy",
+    "city": "Roma",
+    "description": "Luxurious Scandinavian-style apartments with panoramic river views and free Wi-Fi.",
+    "rating": 5,
+    "price": 1250
+  },
+  {
+    "id": "id-6",
+    "picture": "app6",
+    "country": "Italy",
+    "city": "Roma",
+    "description": "Luxurious Scandinavian-style apartments with panoramic river views and free Wi-Fi.",
+    "rating": 5,
+    "price": 1250
+  },
+  {
+    "id": "id-7",
+    "picture": "app7",
+    "country": "Italy",
+    "city": "Roma",
+    "description": "Luxurious Scandinavian-style apartments with panoramic river views and free Wi-Fi.",
+    "rating": 5,
+    "price": 1250
+  },
+  {
+    "id": "id-8",
+    "picture": "app8",
+    "country": "Italy",
+    "city": "Roma",
+    "description": "Luxurious Scandinavian-style apartments with panoramic river views and free Wi-Fi.",
+    "rating": 5,
+    "price": 1250
+  },
+  {
+    "id": "id-9",
+    "picture": "app9",
+    "country": "Spain",
+    "city": "Barcelona",
+    "description": "Luxurious Scandinavian-style apartments with panoramic river views and free Wi-Fi.",
+    "rating": 5,
+    "price": 1250
+  },
+  {
+    "id": "1Iwcb5Rd5s5bApqhc1ej_",
+    "picture": "app3",
+    "country": "Ukraine",
+    "city": "Odessa",
+    "description": "Loren",
+    "rating": "5",
+    "price": "500"
+  }
+]
