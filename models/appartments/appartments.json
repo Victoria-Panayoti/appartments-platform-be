@@ -79,14 +79,5 @@
     "description": "Luxurious Scandinavian-style apartments with panoramic river views and free Wi-Fi.",
     "rating": 5,
     "price": 1250
-  },
-  {
-    "id": "1Iwcb5Rd5s5bApqhc1ej_",
-    "picture": "app3",
-    "country": "Ukraine",
-    "city": "Odessa",
-    "description": "Loren",
-    "rating": "5",
-    "price": "500"
   }
 ]
