@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 
 const app = require("./index");
-
-// SHSbrUzf2r0nPU6p
-const DB_HOST =
-  "mongodb+srv://Victoria:SHSbrUzf2r0nPU6p@cluster0.nmx2dck.mongodb.net/appartments_platform?retryWrites=true&w=majority&appName=Cluster0";
+const { DB_HOST } = process.env;
 
 mongoose.set("strictQuery", true);
 
