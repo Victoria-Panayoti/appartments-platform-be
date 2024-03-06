@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const app = require("./index");
-const { DB_HOST } = process.env;
+const { DB_HOST,PORT=8080 } = process.env;
 
 mongoose.set("strictQuery", true);
 
@@ -9,7 +9,7 @@ mongoose
   .connect(DB_HOST)
   .then(() => {
     console.log("Database connect success");
-    app.listen(8080, () => {
+    app.listen(PORT, () => {
       console.log("Server running at http://localhost:8080");
     });
   })

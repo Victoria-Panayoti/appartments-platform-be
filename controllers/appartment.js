@@ -1,14 +1,14 @@
-const appartments = require("../models/appartments");
+const Appartment = require("../models/appartments/appartment")
 const { HttpError,controllerWrapper } = require("../helpers");
 
 
 const getAllAppartments = async (__, res) => {
-        const result = await appartments.getAllAppartments();
+        const result = await Appartment.find({},"-createdAt -updatedAt");
         res.json(result);
 }
 const getAppartmentById=async (req, res) => {
     const { id } = req.params;
-    const result = await appartments.getAppartmentById(id);
+    const result = await Appartment.findById(id);
     if (!result) {
       throw HttpError(404, "Not found");
     }
@@ -16,12 +16,12 @@ const getAppartmentById=async (req, res) => {
   
 }
 const addNewAppartment=async (req, res) => {
-    const result = await appartments.addNewAppartment(req.body);
+    const result = await Appartment.create(req.body);
     res.status(201).json(result);
 }
 const updateAppartmentById=async (req, res) => {
     const { id } = req.params;
-    const result = await appartments.updateAppartmentById(id, req.body);
+    const result = await Appartment.findByIdAndUpdate(id, req.body,{new:true});
     if (!result) {
       throw HttpError(404, "Not found");
     }
@@ -29,7 +29,7 @@ const updateAppartmentById=async (req, res) => {
 }
 const deleteAppartmentById=async(req, res) => {
     const { id } = req.params;
-    const result = await appartments.deleteAppartmentByID(id);
+    const result = await Appartment.findByIdAndDelete(id);
     if (!result) {
       throw HttpError(404, "Not found");
     }

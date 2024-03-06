@@ -1,6 +1,6 @@
 const Joi = require("joi");
 
-const appartmentSchema = Joi.object({
+const joiAppartmentSchema = Joi.object({
   picture: Joi.string().required(),
   country: Joi.string().required(),
   city: Joi.string().required(),
@@ -10,5 +10,5 @@ const appartmentSchema = Joi.object({
 });
 
 module.exports = {
-    appartmentSchema,
+    joiAppartmentSchema,
 }
