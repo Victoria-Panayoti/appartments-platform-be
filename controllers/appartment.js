@@ -1,4 +1,4 @@
-const Appartment = require("../models/appartments/appartment")
+const {Appartment} = require("../models/appartments/appartment")
 const { HttpError,controllerWrapper } = require("../helpers");
 
 
