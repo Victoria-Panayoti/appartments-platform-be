@@ -31,6 +31,15 @@ const appartmentSchema = new Schema(
       type: Number,
       required: true,
     },
+    favorite: {
+      type: Boolean,
+      default:false,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required:true,
+    }
   },
   { versionKey: false, timestamps: true }
 );
@@ -44,10 +53,16 @@ const joiAppartmentSchema = Joi.object({
   description: Joi.string().required(),
   rating: Joi.number().required(),
   price: Joi.number().required(),
+  favorite:Joi.boolean()
 });
+
+const updateFavoriteSchema = Joi.object({
+    favorite: Joi.boolean().required(),
+})
 
 const schemas = {
   joiAppartmentSchema,
+  updateFavoriteSchema,
 }
 
 const Appartment = model("appartment", appartmentSchema);
