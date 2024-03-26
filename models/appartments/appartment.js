@@ -7,7 +7,9 @@ const appartmentSchema = new Schema(
   {
     picture: {
       type: String,
-      required: true,
+    },
+    cloudinary_id: {
+      type: String,
     },
     country: {
       type: String,
@@ -47,7 +49,7 @@ const appartmentSchema = new Schema(
 appartmentSchema.post("save", handleMongooseError);
 
 const joiAppartmentSchema = Joi.object({
-  picture: Joi.string().required(),
+  picture:Joi.string(),
   country: Joi.string().required(),
   city: Joi.string().required(),
   description: Joi.string().required(),

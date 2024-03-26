@@ -13,7 +13,7 @@ router.get("/:id", isValidId, controllers.getAppartmentById);
 router.post(
   "/",
   authenticate,
-  upload.array("picture",9),
+  upload.single("picture"),
   validateBody(schemas.joiAppartmentSchema),
   controllers.addNewAppartment
 );
@@ -22,6 +22,7 @@ router.put(
   "/:id",
   authenticate,
   isValidId,
+  upload.single("picture"),
   validateBody(schemas.joiAppartmentSchema),
   controllers.updateAppartmentById
 );
