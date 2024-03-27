@@ -34,16 +34,24 @@ const addNewAppartment = async (req, res) => {
   const result = await Appartment.create({
     ...req.body,
     picture: cloudinaryObj.secure_url,
-    cloudinary_id:cloudinaryObj.public_id,
+    cloudinary_id: cloudinaryObj.public_id,
     owner,
   });
   res.status(201).json(result);
 };
 const updateAppartmentById = async (req, res, next) => {
   const { id } = req.params;
+  const appartment = await Appartment.findById(id);
+  await cloudinary.uploader.destroy(appartment.cloudinary_id);
+  const cloudinaryObj = await cloudinary.uploader.upload(req.file.path);
+
   const result = await Appartment.findOneAndUpdate(
     { _id: id, owner: req.user.id },
-    req.body,
+    {
+      ...req.body,
+      picture: cloudinaryObj.path || appartment.picture,
+      cloudinary_id: cloudinaryObj.public_id || appartment.cloudinary_id,
+    },
     {
       new: true,
     }
@@ -56,7 +64,7 @@ const updateAppartmentById = async (req, res, next) => {
 };
 const deleteAppartmentById = async (req, res, next) => {
   const { id } = req.params;
-  
+
   const result = await Appartment.findOneAndDelete({
     _id: id,
     owner: req.user.id,
@@ -64,7 +72,7 @@ const deleteAppartmentById = async (req, res, next) => {
   if (!result) {
     next(HttpError(403));
   }
-  await cloudinary.uploader.destroy(result.cloudinary_id)
+  await cloudinary.uploader.destroy(result.cloudinary_id);
   res.json({ message: "Delete success" });
 };
 const updateFavorite = async (req, res) => {
