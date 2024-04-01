@@ -1,11 +1,16 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { nanoid } = require("nanoid");
 
 const { User } = require("../models/users/user");
-const { HttpError, controllerWrapper, cloudinary } = require("../helpers");
-const { Appartment } = require("../models/appartments/appartment");
+const {
+  HttpError,
+  controllerWrapper,
+  cloudinary,
+  sendEmail,
+} = require("../helpers");
 
-const { SECRET_KEY } = process.env;
+const { SECRET_KEY, BASE_URL } = process.env;
 
 const registerUser = async (req, res) => {
   const { email, password } = req.body;
@@ -15,12 +20,22 @@ const registerUser = async (req, res) => {
     throw HttpError(409, "Email already in use");
   }
   const hashedPassword = await bcrypt.hash(password, 10);
+  const verificationCode = nanoid();
+
   const newUser = await User.create({
     ...req.body,
     password: hashedPassword,
     avatar: cloudinaryObj.secure_url,
     cloudinary_id: cloudinaryObj.public_id,
+    verificationCode,
   });
+
+  const verifyEmail = {
+    to: email,
+    subject: "Verify email",
+    html: `<a target="_blank" href="${BASE_URL}/api/auth/verify/${newUser.verificationCode}" >Click verify email</a>`,
+  };
+  await sendEmail(verifyEmail);
   res.status(201).json({
     name: newUser.name,
     email: newUser.email,
@@ -29,11 +44,27 @@ const registerUser = async (req, res) => {
   });
 };
 
+const verifyEmail = async (req, res) => {
+  const { verificationCode } = req.params;
+  const user = await User.findOne({ verificationCode });
+  if (!user) {
+    throw HttpError(401, "Email not found");
+  }
+  await User.findByIdAndUpdate(user._id, {
+    verify: true,
+    verificationCode: "",
+  });
+  res.json({ message: "Email verify success" });
+};
+
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) {
     throw HttpError(401, "Email or password is invalid");
+  }
+  if (!user.verify) {
+    throw HttpError(401, "Email not verified");
   }
   const passwordCompare = await bcrypt.compare(password, user.password);
   if (!passwordCompare) {
@@ -82,6 +113,7 @@ const logout = async (req, res) => {
 };
 module.exports = {
   registerUser: controllerWrapper(registerUser),
+  verifyEmail: controllerWrapper(verifyEmail),
   loginUser: controllerWrapper(loginUser),
   updateUserById: controllerWrapper(updateUserById),
   getCurrent: controllerWrapper(getCurrent),

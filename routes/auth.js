@@ -5,7 +5,8 @@ const controllers=require("../controllers/auth")
 
 const router = express.Router();
 
-router.post("/register",upload.single("avatar"), validateBody(schemas.joiRegisterSchema), controllers.registerUser);
+router.post("/register", upload.single("avatar"), validateBody(schemas.joiRegisterSchema), controllers.registerUser);
+router.get("/verify/:verificationCode",controllers.verifyEmail)
 router.post("/login", validateBody(schemas.joiLoginSchema), controllers.loginUser);
 router.put("/:id",upload.single("avatar"),controllers.updateUserById)
 router.get("/current", authenticate, controllers.getCurrent);
