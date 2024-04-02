@@ -1,12 +1,16 @@
-const sendgridMail = require("@sendgrid/mail");
+const nodemailer = require("nodemailer");
 
-const { SENDGRID_API_KEY } = process.env;
-
-sendgridMail.setApiKey(SENDGRID_API_KEY);
-
-const sendEmail = async (data) => {
-  const email = { ...data, from: "victoria75076@gmail.com" };
-  await sendgridMail.send(email);
+const sendEmail = async(data) => {
+  const transport = nodemailer.createTransport({
+    host: "sandbox.smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+      user: process.env.MAILTRAP_USER,
+      pass: process.env.MAILTRAP_PASS,
+    },
+  });
+  const email= {...data, from:"victoria75076@gmail.com"};
+  transport.sendMail(email);
   return true;
 };
 
